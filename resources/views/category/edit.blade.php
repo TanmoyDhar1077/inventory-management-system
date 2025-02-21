@@ -7,37 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Create Category</title>
+    <title>Edit Category</title>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center my-5">Create Category</h1>
+        <h1 class="text-center my-5">Edit Category</h1>
         <div class="d-flex justify-content-end mb-3">
             <a href="{{ route('category.index') }}" class="btn btn-primary">Back</a>
         </div>
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('category.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name:</label>
-                        <input type="text" class="form-control" value="{{ old('name')}}" id="name" name="name" placeholder="Enter category name">
+                        <input type="text" class="form-control" id="name" name="name"  value="{{ old('name',$category->name) }}">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description:</label>
-                        <textarea class="form-control" value="{{ old('description')}} id="description" name="description" rows="3" placeholder="Enter category desctiption"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3">{{ old('description',$category->description) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status:</label>
-                        <select class="form-select" id="status" name="status" value="{{ old('status')}}">
+                        <select class="form-select" id="status" name="status">
                             <option value=" " selected hidden>Select Option</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option> 
+                            <option value="1" {{ $category->status == 1 ? 'selected': '' }}>Active</option>
+                            <option value="0" {{ $category->status == 0 ? 'selected': '' }}>Inactive</option> 
                         </select>  
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>
@@ -50,3 +50,4 @@
 </body>
 
 </html>
+
