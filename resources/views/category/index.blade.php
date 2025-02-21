@@ -7,12 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title></title>
+    <title>Category list</title>
 </head>
 
 <body>
     <div class="container">
         <h1 class="text-center my-5">Category list</h1>
+
+        <div class="d-flex justify-content-end mb-3">
+            <a href="{{ route('category.create') }}" class="btn btn-primary">Create Category</a>
+        </div>
+
         <div class="row">
             <table class="table table-success table-striped table-hover">
                 <thead>
@@ -44,9 +49,11 @@
 
                             <td>
                                 <span class="d-flex gap-1">
-                                    <a href="" class="btn {{ $category->status == 1 ? 'btn-warning' : 'btn-success' }}">{{ $category->status == 1 ? 'Inactive' : 'Active' }}</a>
+                                    <a href=""
+                                        class="btn {{ $category->status == 1 ? 'btn-warning' : 'btn-success' }}">{{ $category->status == 1 ? 'Inactive' : 'Active' }}</a>
                                     <a href="" class="btn btn-primary">Edit</a>
-                                    <a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('category.delete', $category->id) }}"
+                                        class="btn btn-danger">Delete</a>
                                 </span>
                             </td>
                         </tr>
