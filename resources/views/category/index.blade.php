@@ -21,7 +21,7 @@
         <div class="row">
             <table class="table table-success table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>ID</th>
                         <th>Title</th>
                         <th>Description</th>
@@ -33,7 +33,7 @@
                 </thead>
                 <tbody>
                     @foreach ($categories as $category)
-                        <tr>
+                        <tr ">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
