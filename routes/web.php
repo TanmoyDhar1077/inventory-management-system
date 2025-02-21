@@ -7,8 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
+Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
     Route::get('/index', [CategoryController::class, 'index'])->name('index');
-      
-    });
-    
+    Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('delete'); 
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::post('/store', [CategoryController::class, 'store'])->name('store');
+    Route::get('/edit/{}', [CategoryController::class, 'edit'])->name('edit');
+    Route::put('/update/{}', [CategoryController::class, 'update'])->name('update');
+});

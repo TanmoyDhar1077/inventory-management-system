@@ -46,7 +46,7 @@
                                 <span class="d-flex gap-1">
                                     <a href="" class="btn {{ $category->status == 1 ? 'btn-warning' : 'btn-success' }}">{{ $category->status == 1 ? 'Inactive' : 'Active' }}</a>
                                     <a href="" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger">Delete</a>
                                 </span>
                             </td>
                         </tr>
