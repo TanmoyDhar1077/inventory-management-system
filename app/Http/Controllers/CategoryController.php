@@ -10,14 +10,14 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index():View
+    public function index(): View
     {
         $categories = Category::latest()->get();
         return view('category.index', compact('categories'));
     }
 
     //Delete category
-    public function delete($id):RedirectResponse
+    public function delete($id): RedirectResponse
     {
         $category = Category::findOrfail($id);
         $category->delete();
@@ -25,13 +25,13 @@ class CategoryController extends Controller
     }
 
     //Create category
-    public function create():View
+    public function create(): View
     {
         return view('category.create');
     }
 
     // Store category
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         /* $request->validate([
             'name' => 'required',
@@ -48,20 +48,33 @@ class CategoryController extends Controller
     }
 
     // Edit category
-    public function edit($id):View
+    public function edit($id): View
     {
         $category = Category::findOrfail($id);
         return view('category.edit', compact('category'));
     }
 
     // Update category
-    public function update(Request $request, $id):RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
         $category = Category::findOrfail($id);
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->description = $request->description;
         $category->status = $request->status;
+        $category->update();
+        return redirect()->route('category.index');
+    }
+
+    // Change status
+    public function status($id): RedirectResponse
+    {
+        $category = Category::findOrfail($id);
+        if ($category->status == 1) {
+            $category->status = 0;
+        } else {
+            $category->status = 1;
+        }
         $category->update();
         return redirect()->route('category.index');
     }

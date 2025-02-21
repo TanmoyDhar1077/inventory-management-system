@@ -14,4 +14,5 @@ Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
     Route::post('/store', [CategoryController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::get('/status/{id}', [CategoryController::class, 'status'])->name('status');
 });
